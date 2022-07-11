@@ -3,11 +3,11 @@ import { Container, Typography, Button, Grid } from "@mui/material";
 
 import styles from "./styles";
 import useClasses from "../../useClasses";
+import CartItem from "./CartItem/CartItem";
 
 const Cart = ({ cart }) => {
   const classes = useClasses(styles);
   //   const classes = {};
-  const isEmpty = !cart?.line_items?.length;
 
   const EmptyCart = () => <Typography variant="subtitle1">You have no items in your shopping cart, start adding some!</Typography>;
   const FilledCard = () => (
@@ -15,7 +15,7 @@ const Cart = ({ cart }) => {
       <Grid container spacing={3}>
         {(cart?.line_items || []).map((item) => (
           <Grid item key={item.id} xs={12} sm={4}>
-            <div>{item.name}</div>
+            <CartItem item={item} />
           </Grid>
         ))}
       </Grid>
@@ -33,13 +33,15 @@ const Cart = ({ cart }) => {
     </>
   );
 
+  if (!cart.line_items) return "Loading...";
+
   return (
     <Container>
       <div className={classes.toolbar} />
-      <Typography className={classes.title} variant="h3" color="inherit">
+      <Typography className={classes.title} variant="h3" gutterBottom>
         Your Shopping Cart
       </Typography>
-      {isEmpty ? <EmptyCart /> : <FilledCard />}
+      {!cart?.line_items?.length ? <EmptyCart /> : <FilledCard />}
     </Container>
   );
 };

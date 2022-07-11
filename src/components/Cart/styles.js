@@ -1,7 +1,7 @@
 const styles = (theme) => ({
   toolbar: theme.mixins.toolbar,
   title: {
-    marginTop: "5%",
+    marginTop: "5%!important",
   },
   emptyButton: {
     minWidth: "150px",
