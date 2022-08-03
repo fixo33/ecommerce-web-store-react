@@ -22,14 +22,14 @@ const Cart = ({ cart, handleUpdateCartQty, handleRemoveFromCart, handleEmptyCart
   const FilledCard = () => (
     <>
       <Grid container spacing={3}>
-        {(cart?.line_items || []).map((item) => (
+        {(cart.line_items || []).map((item) => (
           <Grid item key={item.id} xs={12} sm={4}>
             <CartItem item={item} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} />
           </Grid>
         ))}
       </Grid>
       <div className={classes.cardDetails}>
-        <Typography variant="h4">Subtotal: {cart?.subtotal?.formatted_with_symbol}</Typography>
+        <Typography variant="h4">Subtotal: {cart.subtotal.formatted_with_symbol}</Typography>
         <div>
           <Button className={classes.emptyButton} size="large" type="button" variant="contained" color="secondary" onClick={handleEmptyCart}>
             Empty Cart
@@ -50,7 +50,7 @@ const Cart = ({ cart, handleUpdateCartQty, handleRemoveFromCart, handleEmptyCart
       <Typography className={classes.title} variant="h3" gutterBottom>
         Your Shopping Cart
       </Typography>
-      {!cart?.line_items?.length ? <EmptyCart /> : <FilledCard />}
+      {!cart.line_items.length ? <EmptyCart /> : <FilledCard />}
     </Container>
   );
 };
