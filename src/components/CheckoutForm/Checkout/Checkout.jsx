@@ -30,6 +30,7 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
       }
     };
     generateToken();
+    // eslint-disable-next-line
   }, [cart]);
 
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
